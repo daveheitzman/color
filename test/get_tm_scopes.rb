@@ -27,10 +27,10 @@ class ScopeEater
       @scopes = {}
       @files_look_in = Dir[File.dirname(__FILE__)+"/textmate_themes/*.tmTheme"]
 #      files_look_in = Dir[File.dirname(__FILE__)+"/syntaxes/Ruby.plist"]
-      puts @files_look_in.inspect
+      # puts @files_look_in.inspect
       
       @files_look_in.each do |f|
-        puts "opening file "+f.to_s 
+        # puts "opening file "+f.to_s 
         syntax_file = File.open(f,"r")
         indoc = REXML::Document.new( syntax_file )
 
@@ -52,11 +52,11 @@ class ScopeEater
       syntax_file.close       
       end #files_look_in.each
       outf=File.new("scopes_harvested","w")
-        @scopes.each do |s|
-        outf.puts s
-      end 
+        # @scopes.each do |s|
+        #  outf.puts s
+        # end 
       outf.close 
-    puts "harvested #{@scopes.size} scopes from #{@files_look_in.size} files."  
+    # puts "harvested #{@scopes.size} scopes from #{@files_look_in.size} files."  
 
     end #process_plists
     

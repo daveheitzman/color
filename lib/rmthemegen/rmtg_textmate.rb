@@ -75,7 +75,7 @@ module RMThemeGen
    
     def make_theme_file( outputdir = ENV["PWD"], bg_color_style=:dark, colorsets=[], rand_seed=nil, opts_hash={} )
       outt=create_textmate_theme(bg_color_style , colorsets, rand_seed, opts_hash) #@themename gets set by that there call, so we need it to happen before we use the filename
-      @savefile = File.expand_path(outputdir)+"/rmt_"+@themename+".tmTheme"
+      @savefile = File.expand_path(outputdir)+"/rmt_ZZZ"+@themename+".tmTheme"
       File.open(@savefile, "w") do |f|
         f.puts( outt )
       end 
@@ -127,11 +127,17 @@ module RMThemeGen
           if g.join(' ').upcase.include?( "BOLD" ) || rand < (@bold_chance/2)
             fontStyle += "bold "
           end 
-          newcol =  "#"+randcolor(:bg_rgb=>@backgroundcolor).upcase
+          # puts c.to_s
+          # puts g.to_s
+          if g.any?{ |elem| elem.to_s.downcase.include?("comment") }
+            newcol =  "#"+randcolor(:bg_rgb=>@backgroundcolor, :max_cont=>0.05 ).upcase
+          else
+            newcol =  "#"+randcolor(:bg_rgb=>@backgroundcolor ).upcase
+          end 
           @new_color_to_group[newcol] = color_2_group[c]
           
           g.each do |s|
-            @new_color_to_group[s] = {:foreground=>newcol,:fontStyle=>fontStyle.chop!}
+            @new_color_to_group[s] =  { :foreground=>newcol, :fontStyle=>fontStyle.strip }
           end
         end 
         
@@ -245,7 +251,7 @@ module RMThemeGen
 #puts "scope= #{scope} , group= #{@scope_2_group[scope]} , newcolor = "+newcolor.to_s          
         
         if @new_color_to_group[scope] 
-puts "scope= #{scope} , group= #{@scope_2_group[scope]} , newcolor = "+@new_color_to_group[scope][:foreground]+ " , fonStyle=#{@new_color_to_group[scope][:fontStyle]}"          
+# puts "scope= #{scope} , group= #{@scope_2_group[scope]} , newcolor = "+@new_color_to_group[scope][:foreground]+ " , fonStyle=#{@new_color_to_group[scope][:fontStyle]}"          
           di1 = make_dict(@new_color_to_group[scope])   
         else
           di1 = make_dict(:fontStyle=>'')

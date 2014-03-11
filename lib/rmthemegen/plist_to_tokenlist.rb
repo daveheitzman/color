@@ -13,7 +13,7 @@
 
 module RMThemeGen
   class ThemeTextmate < RMThemeParent
-    attr_reader :for_tm_output, :repository_names, :under_patterns, :scopes_found
+   attr_reader :for_tm_output, :repository_names, :under_patterns, :scopes_found
    attr_accessor :scopes_found_count, :uses_same_foreground, :color_2_group, :group_2_color, :scope_2_group
    #color_group_colors is a hash: it points from a hex color (#FE2301) => a string ('group14'). Many different colors might point to 1 string
    #color_groups hashes from a scope name to a color group.   
@@ -26,7 +26,7 @@ module RMThemeGen
       @for_tm_output = {}
       files_look_in = Dir[File.dirname(__FILE__)+"/syntaxes/*.plist"]
       files_look_in = Dir[File.dirname(__FILE__)+"/syntaxes/Ruby.plist"]
-      puts files_look_in.inspect
+      # puts files_look_in.inspect
       
       files_look_in.each do |f|
         puts "opening file "+f.to_s 
@@ -79,10 +79,10 @@ module RMThemeGen
         #okay, so this does reliably give us the top-level names (each of the ee's is one of them) 
         e.elements.each do |ee|          
           if ee.name == "key" 
-            puts " ***** " 
+            # puts " ***** " 
             @repository_names[ee.text.to_s] = ''
-            puts ee.to_s 
-            puts " ***** " 
+            # puts ee.to_s 
+            # puts " ***** " 
             if ee.next_element 
               visit_all_nodes(ee.next_element)  do |eer|
                   if eer.name == "string" && eer.previous_element.name == "key" &&  eer.previous_element.text == "name"
@@ -105,7 +105,7 @@ module RMThemeGen
                 ee.elements.each do |cc|
                   if  ["name", "contentName"].include? cc.text 
                   main_name = cc.next_element.text   
-                  puts "main_name"+main_name
+                  # puts "main_name"+main_name
                   @under_patterns[main_name]=""
                   end 
                 end
@@ -189,7 +189,7 @@ module RMThemeGen
               end
             end
           rescue Exception => e
-            puts "an exception in process_plists(): "+e.to_s 
+            puts "an exception in get_scopes_from_themefiles(): "+e.to_s 
           end
         } 
       uses_same_foreground.delete_if do |k,v|  v.size == 1  end 
@@ -209,7 +209,7 @@ module RMThemeGen
       end 
       outf.printf "]"
       outf.close 
-puts "plist_to_tokenlist line 205: harvested #{scopes_found.size} scopes from #{files_look_in.size} files."  
+# puts "plist_to_tokenlist line 205: harvested #{scopes_found.size} scopes from #{files_look_in.size} files."  
       return scopes_found
    end #get_scopes_from_themefiles
 
