@@ -75,7 +75,7 @@ module RMThemeGen
    
     def make_theme_file( outputdir = ENV["PWD"], bg_color_style=:dark, colorsets=[], rand_seed=nil, opts_hash={} )
       outt=create_textmate_theme(bg_color_style , colorsets, rand_seed, opts_hash) #@themename gets set by that there call, so we need it to happen before we use the filename
-      @savefile = File.expand_path(outputdir)+"/rmt_ZZZ"+@themename+".tmTheme"
+      @savefile = File.expand_path(outputdir)+"/rmt_"+@themename+".tmTheme"
       File.open(@savefile, "w") do |f|
         f.puts( outt )
       end 

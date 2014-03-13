@@ -4,3 +4,5 @@ rmthemegen.gemspec
 .bundle
 Gemfile.lock
 pkg/*
+
+/test/rmt*
