@@ -164,4 +164,3 @@ class Color::RGB
   named [0x9a, 0xcd, 0x32], :YellowGreen
 end
 
-require 'color/rgb/metallic'
