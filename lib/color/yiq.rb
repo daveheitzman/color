@@ -2,12 +2,18 @@
 class Color::YIQ
   include Color
 
-  # Creates a YIQ colour object from fractional values 0 .. 1.
-  #
-  #   Color::YIQ.new(0.3, 0.2, 0.1)
-  def self.from_fraction(y = 0, i = 0, q = 0, &block)
-    new(y, i, q, 1.0, &block)
-  end
+  class << self 
+    # Creates a YIQ colour object from fractional values 0 .. 1.
+    #
+    #   Color::YIQ.new(0.3, 0.2, 0.1)
+    def from_fraction(y = 0, i = 0, q = 0, &block)
+      new(y, i, q, 1.0, &block)
+    end
+
+    def random
+      self.new(rand()*100,rand()*100,rand()*100)
+    end 
+  end 
 
   # Creates a YIQ colour object from percentages 0 .. 100.
   #

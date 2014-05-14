@@ -129,6 +129,16 @@ class << Color
     normalize_to_range(value, 0..65535).to_i
   end
   alias normalize_16bit normalize_word
+  
+  #produces   
+  def contrast(other_color, options)
+    #yiq, cmyk, hsl, lab, rgb
+    if self.respond_to?(:to_rgb) && other_color.respond_to?(:to_rgb) 
+      return self.to_rgb.contrast(other_color.to_rgb, options)
+    else
+      raise NoMethodError.new("Unable to determine contrast between a #{self.class} and a #{other_color.class}")
+    end 
+  end
 end
 
 require 'color/rgb'

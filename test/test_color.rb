@@ -124,5 +124,52 @@ module TestColor
       assert_equal(Color::CMYK.new(10, 20, 30, 40).to_hsl, c)
       assert_equal("Color.new has been deprecated. Use Color::CMYK.new instead.", $last_warn)
     end
+
+    def test_contrast
+      #yiq - yiq
+      c1=Color::YIQ.new(rand(99)+1,rand(99)+1,rand(99)+1)
+      c2=Color::YIQ.random 
+      assert_equal c1.contrast( c2, {}), c2.contrast(c1,{})
+      #yiq - rgb
+      c1=Color::YIQ.new(rand(99)+1,rand(99)+1,rand(99)+1)
+      assert_equal c1.contrast( c2, {}), c2.contrast(c1,{})
+      #yiq - hsl
+      c1=Color::YIQ.new(rand(99)+1,rand(99)+1,rand(99)+1)
+      c2=Color::HSL.new(rand(99)+1,rand(99)+1,rand(99)+1)
+      assert_equal c1.contrast( c2, {}), c2.contrast(c1,{})
+      #yiq - cmyk
+      c1=Color::YIQ.new(rand(99)+1,rand(99)+1,rand(99)+1)
+      c2=Color::YIQ.new(rand(99)+1,rand(99)+1,rand(99)+1)
+      assert_equal c1.contrast( c2, {}), c2.contrast(c1,{})
+      #yiq - lab 
+      c1=Color::YIQ.new(rand(99)+1,rand(99)+1,rand(99)+1)
+      c2=Color::YIQ.new(rand(99)+1,rand(99)+1,rand(99)+1)
+      assert_equal c1.contrast( c2, {}), c2.contrast(c1,{})
+
+      #rgb - yiq
+      #rgb - rgb
+      #rgb - hsl
+      #rgb - cmyk
+      #rgb - lab 
+
+      #hsl - yiq
+      #hsl - rgb
+      #hsl - hsl
+      #hsl - cmyk
+      #hsl - lab 
+
+      #cmyk - yiq
+      #cmyk - rgb
+      #cmyk - hsl
+      #cmyk - cmyk
+      #cmyk - lab 
+
+      #lab - yiq
+      #lab - rgb
+      #lab - hsl
+      #lab - cmyk
+      #lab - lab 
+
+    end 
   end
 end

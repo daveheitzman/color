@@ -6,6 +6,9 @@ class Color::LAB
   attr_accessor :l, :a, :b 
 
   def initialize(l,a,b)
+    if !( (0.0..100.0).include?(l) )
+      raise ArgumentError.new("'L' value of a new Lab color must be in the range [0.0..100.0]")
+    end 
     @l = l 
     @a = a 
     @b = b 

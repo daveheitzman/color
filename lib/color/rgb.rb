@@ -68,6 +68,10 @@ class Color::RGB
       end
     end
 
+    def random
+      self.new( rand(256), rand(256), rand(256) )
+    end 
+    
     # Return a colour as identified by the colour name.
     def by_name(name, &block)
       __by_name.fetch(name.to_s.downcase, &block)
