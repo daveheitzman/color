@@ -127,24 +127,25 @@ module TestColor
 
     def test_contrast
       #yiq - yiq
-      c1=Color::YIQ.new(rand(99)+1,rand(99)+1,rand(99)+1)
+      c1=Color::YIQ.random
       c2=Color::YIQ.random 
-      assert_equal c1.contrast( c2, {}), c2.contrast(c1,{})
+      assert_equal c1.contrast( c2 ), c2.contrast( c1 )
       #yiq - rgb
-      c1=Color::YIQ.new(rand(99)+1,rand(99)+1,rand(99)+1)
-      assert_equal c1.contrast( c2, {}), c2.contrast(c1,{})
+      c1=Color::YIQ.random
+      c1=Color::RGB.random
+      assert_equal c1.contrast( c2 ), c2.contrast( c1 )
       #yiq - hsl
-      c1=Color::YIQ.new(rand(99)+1,rand(99)+1,rand(99)+1)
-      c2=Color::HSL.new(rand(99)+1,rand(99)+1,rand(99)+1)
-      assert_equal c1.contrast( c2, {}), c2.contrast(c1,{})
+      c1=Color::YIQ.random
+      c2=Color::HSL.random
+      assert_equal c1.contrast( c2 ), c2.contrast( c1 )
       #yiq - cmyk
-      c1=Color::YIQ.new(rand(99)+1,rand(99)+1,rand(99)+1)
-      c2=Color::YIQ.new(rand(99)+1,rand(99)+1,rand(99)+1)
-      assert_equal c1.contrast( c2, {}), c2.contrast(c1,{})
+      c1=Color::YIQ.random
+      c2=Color::CMYK.random
+      assert_equal c1.contrast( c2 ), c2.contrast( c1 )
       #yiq - lab 
-      c1=Color::YIQ.new(rand(99)+1,rand(99)+1,rand(99)+1)
-      c2=Color::YIQ.new(rand(99)+1,rand(99)+1,rand(99)+1)
-      assert_equal c1.contrast( c2, {}), c2.contrast(c1,{})
+      c1=Color::YIQ.random
+      c2=Color::LAB.random
+      assert_equal c1.contrast( c2 ), c2.contrast( c1 )
 
       #rgb - yiq
       #rgb - rgb

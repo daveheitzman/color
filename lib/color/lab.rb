@@ -1,13 +1,19 @@
 # -*- ruby encoding: utf-8 -*-
 
-# An LAB colour object. 
+# An LAB colour object.
+# CIELAB color system  
 class Color::LAB
   include Color
   attr_accessor :l, :a, :b 
 
   def initialize(l,a,b)
-    if !( (0.0..100.0).include?(l) )
-      raise ArgumentError.new("'L' value of a new Lab color must be in the range [0.0..100.0]")
+    # l should be in the range [0..100.0], however, sometimes it might slightly overflow because of 
+    # calculations done in methods creating new LAB objects. The intent is to support slightly overflowed values,
+    # accepting them as 100.0, but not anything greater than that, which might indicate an error on the
+    # caller's part 
+    l=(l*10_000).round.to_f / 10_000 # ruby 1.8.7 does not support l.round(4)
+    if !( (0.0..100.0).include?( l ) )
+      raise ArgumentError.new("'L' value of a new Lab color must be in the range [0.0..100.0], given was #{l}")
     end 
     @l = l 
     @a = a 
@@ -15,6 +21,10 @@ class Color::LAB
   end 
 
   class << self 
+    def random
+      self.new(rand*100, rand*1000-500, rand*400-200)
+    end 
+
     def rad_to_deg(rad)
       @@_ratio ||= 180 /(Math::PI)
       if rad < 0
@@ -182,5 +192,5 @@ class Color::LAB
       Math.sqrt(composite_L + composite_C + composite_H)
     end
   end 
-
+  
 end

@@ -11,6 +11,9 @@ class Color::HSL
     def from_fraction(h = 0.0, s = 0.0, l = 0.0, &block)
       new(h, s, l, 1.0, 1.0, &block)
     end
+    def random
+      self.new(rand*360, rand*100, rand*100)
+    end 
   end
 
   # Coerces the other Color object into HSL.
@@ -183,6 +186,16 @@ class Color::HSL
   def to_a
     [ h, s, l ]
   end
+
+  def contrast(other_color, options={}) 
+    if options[:algorithm]==:delta_e94 
+      Color::LAB.delta_e94(self.to_lab,other_rgb.to_lab )
+    elsif options[:algorithm]==:delta_e2000 
+      Color::LAB.delta_e2000(self.to_lab,other_rgb.to_lab )
+    else 
+      to_rgb.contrast(other_color.to_rgb, options)
+    end 
+  end 
 
   private
 

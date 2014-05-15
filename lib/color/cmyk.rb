@@ -30,6 +30,10 @@ class Color::CMYK
     def from_percent(c = 0, m = 0, y = 0, k = 0, &block)
       new(c, m, y, k, &block)
     end
+
+    def random
+      from_fraction(rand,rand,rand,rand)
+    end 
   end
 
   # Creates a CMYK colour object from percentages. Internally, the colour is
@@ -250,10 +254,20 @@ class Color::CMYK
     [ c, m, y, k ]
   end
 
+  def contrast(other_color, options={}) 
+    if options[:algorithm]==:delta_e94 
+      Color::LAB.delta_e94(self.to_lab,other_rgb.to_lab )
+    elsif options[:algorithm]==:delta_e2000 
+      Color::LAB.delta_e2000(self.to_lab,other_rgb.to_lab )
+    else 
+      to_rgb.contrast(other_color.to_rgb, options)
+    end 
+  end 
+
   private
   # Implements the Adobe PDF conversion of CMYK to RGB.
   def adobe_cmyk_rgb
-    [ @c, @m, @y ].map { |v| 1.0 - [ 1.0, v + @k ].min }
+    [ @c, @m, @y ].map{ |v| 1.0 - [ 1.0, v + @k ].min }
   end
 
   # Implements the standard conversion of CMYK to RGB.

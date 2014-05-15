@@ -31,6 +31,15 @@ class Color::YIQ
     self
   end
 
+  def to_rgb
+    # returns the rgb equivalent of this color
+    # http://en.wikipedia.org/wiki/YIQ
+    r=[1, 0.9563, 0.6210].inject{ |i,sum| sum + i * @y }
+    g=[1,-0.2721 , -0.6474].inject{ |i,sum| sum + i * @i }
+    b=[1,-1.1070 , -0.6474].inject{ |i,sum| sum +  i * @q }
+    Color::RGB.from_fraction(r,g,b)
+  end 
+
   def brightness
     @y
   end
@@ -61,6 +70,16 @@ class Color::YIQ
   def inspect
     "YIQ [%.2f%%, %.2f%%, %.2f%%]" % [ @y * 100, @i * 100, @q * 100 ]
   end
+
+  def contrast(other_color, options={}) 
+    if options[:algorithm]==:delta_e94 
+      Color::LAB.delta_e94(self.to_lab,other_rgb.to_lab )
+    elsif options[:algorithm]==:delta_e2000 
+      Color::LAB.delta_e2000(self.to_lab,other_rgb.to_lab )
+    else 
+      to_rgb.contrast(other_color.to_rgb, options)
+    end 
+  end 
 
   def to_a
     [ y, i, q ]
