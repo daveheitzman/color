@@ -25,6 +25,7 @@ require File.dirname(__FILE__)+'/rmthemegen_to_css'
 require File.dirname(__FILE__)+'/uv_addons.rb'
 require File.dirname(__FILE__)+'/rmthemegen_parent'
 require File.dirname(__FILE__)+'/plist_to_tokenlist'
+require File.dirname(__FILE__)+'/rmtg_textmate'
 
 module RMThemeGen
 

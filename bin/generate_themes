@@ -30,15 +30,15 @@ puts "  Linux: Copy xml files to  ~/.RubyMine3x/config/color. New themes should 
 puts "  Mac:  Copy xml files to ~/Library/Preferences/RubyMine/color. You must restart RubyMine on the Mac, then look for new color schemes. "
 puts
  
-l = RMThemeGen::ThemeGenerator.new
+l = RMThemeGen::ThemeTextmate.new
 
 
 @iterations = ARGV[0] || 1
 @iterations = @iterations.to_i 
 
 @iterations.times do 
-#  puts l.make_theme_file() 
-  end
+  puts l.make_theme_file 
+end
 
 
 puts
