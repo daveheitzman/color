@@ -13,7 +13,6 @@ require 'xmlsimple'
 #require 'textpow'
 #require 'uv'                    #ultraviolet
 require 'plist'
-require File.dirname(__FILE__)+"/token_list"
 require File.dirname(__FILE__)+'/rgb_contrast_methods'
 require File.dirname(__FILE__)+'/rmthemegen_to_css'
 require File.dirname(__FILE__)+'/uv_addons.rb'
