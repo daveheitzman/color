@@ -12,10 +12,6 @@
 
 
 
-require 'rubygems'
-require 'color'
-require 'xmlsimple'
-require 'plist'
 
 module RMThemeGen
 
