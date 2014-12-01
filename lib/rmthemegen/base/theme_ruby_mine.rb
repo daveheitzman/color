@@ -11,11 +11,10 @@
 
 
 
-require File.dirname(__FILE__)+'/rmthemegen_parent'
 
 module RMThemeGen
 
-  class ThemeRubyMine < RMThemeParent
+  class ThemeRubyMine < Base
     
     attr_reader :xml_save 
     attr_reader :xmlout #a huge structure of xml that can be given to XmlSimple.xml_out() to create that actual color theme file

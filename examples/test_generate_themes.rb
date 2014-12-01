@@ -47,8 +47,8 @@
 #    puts l.to_css
     puts "creating theme " + l.themename
     puts
-#    Uv::Converters.tmtheme2render( File.expand_path(File.dirname(__FILE__))+"/textmate_themes/choco.tmTheme", File.dirname(__FILE__) )
- #   Uv::Converters.tmtheme2render( newTmTheme,"." )
+#    RMThemeGen::Converters.tmtheme2render( File.expand_path(File.dirname(__FILE__))+"/textmate_themes/choco.tmTheme", File.dirname(__FILE__) )
+ #   RMThemeGen::Converters.tmtheme2render( newTmTheme,"." )
 =begin
     puts '@for_tm_output.inspect'
   #  puts l.for_tm_output.inspect

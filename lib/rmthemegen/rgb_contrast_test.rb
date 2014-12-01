@@ -4,7 +4,7 @@ require File.dirname(__FILE__)+"/token_list"
 require File.dirname(__FILE__)+'/rgb_contrast_methods'
 
 module RMThemeGen
-  class ThemeGenerator < RMThemeParent
+  class ThemeGenerator < Base
     
     attr_reader :xmlout #a huge structure of xml that can be given to XmlSimple.xml_out() to create that actual color theme file
       

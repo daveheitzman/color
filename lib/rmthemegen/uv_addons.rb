@@ -1,6 +1,6 @@
-module Uv
-  
-  class Converters
+
+module RMThemeGen
+  class Converters < Uv::Converters
   @@render_path = ""
   @@css_path = ""
 

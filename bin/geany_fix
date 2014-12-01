@@ -23,7 +23,7 @@ require File.expand_path('../../lib/rmthemegen/color/color',__FILE__)
 require File.expand_path("../../lib/rmthemegen/xmlsimple.rb",__FILE__)
 
 module RMThemeGen
-  class GeanyFixer < RMThemeParent
+  class GeanyFixer < Base
 
     attr_reader :xmlout #a huge structure of xml that can be given to XmlSimple.xml_out() to create that actual color theme file
 

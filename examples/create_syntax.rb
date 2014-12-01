@@ -1,7 +1,4 @@
-require 'rubygems'
-require 'textpow'
-require 'uv'
-require File.expand_path('../../lib/rmthemegen.rb',__FILE__)
+require 'rmthemegen'
 
   # Uv::init_syntaxes
   # Uv::syntaxes_hash['ruby'].inspect
@@ -17,4 +14,4 @@ require File.expand_path('../../lib/rmthemegen.rb',__FILE__)
   # puts render_str.last + render_processor.string
 
 
-puts   Uv::tmtheme_to_html( File.read('./rmt_frail_creature.tmTheme'),"def foodie\n puts 'foodie'\n end ",{:line_numbers => true, :render_style => "classic", :headers => true, :code_type=>'ruby'} )
+puts   RmThemeGen::HTML::tmtheme_to_html( File.read('./rmt_frail_creature.tmTheme'),"def foodie\n puts 'foodie'\n end ",{:line_numbers => true, :render_style => "classic", :headers => true, :code_type=>'ruby'} )

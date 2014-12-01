@@ -19,7 +19,7 @@ require File.dirname(__FILE__)+'/rgb_contrast_methods'
 
 module RMThemeGen
   
-  class ThemeGenerator < RMThemeParent
+  class ThemeGenerator < Base
     
       def to_css
       #fout = File.new("index.html", "w+")
@@ -64,5 +64,5 @@ module RMThemeGen
     #    end
       return s
       end
-  end #class ThemeGenerator < RMThemeParent
+  end #class ThemeGenerator < Base
 end #module RMThemeGen

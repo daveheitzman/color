@@ -7,20 +7,10 @@
 #*                                                                    *
 #**********************************************************************
 
-require 'rubygems'
-require 'color'
-require 'xmlsimple'
-#require 'textpow'
-#require 'uv'                    #ultraviolet
-require 'plist'
-require File.dirname(__FILE__)+'/rgb_contrast_methods'
-require File.dirname(__FILE__)+'/rmthemegen_to_css'
-require File.dirname(__FILE__)+'/uv_addons.rb'
-require File.dirname(__FILE__)+'/plist_to_tokenlist'
 
 
 module RMThemeGen
-  class  RMThemeParent
+  class Base
    attr_accessor :themename
    
     def initialize

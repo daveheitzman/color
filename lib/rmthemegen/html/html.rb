@@ -4,10 +4,10 @@ require 'uv/utility'
 module RmThemeGen
   module HTML
     include Uv
-    def Uv.syntaxes_hash
-      Uv.init_syntaxes unless @syntaxes
-      @syntaxes 
-    end 
+    # def syntaxes_hash
+    #   Uv.init_syntaxes unless @syntaxes
+    #   @syntaxes 
+    # end 
 
     def css_string(css,code_name)   
       #input: a hash of css selectors=>styles

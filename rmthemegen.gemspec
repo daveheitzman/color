@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency('textpow19', '0.11.0')
   s.add_dependency('plist','3.1.0')
   s.add_dependency('ultraviolet1x', '0.14.0')
+  s.add_dependency('minitest', '5.4.3')
  
   s.bindir = "bin"
   s.executables = ['bin/generate_themes','bin/geany_fix']

@@ -1,5 +1,5 @@
-require 'minitest/autorun'
-require 'rmthemegen'
+require File.expand_path("../../lib/rmthemegen/rmthemegen_187.rb",__FILE__)
+require 'test/unit'
 
 
 class RmthemegenTests < Test::Unit::TestCase
@@ -9,6 +9,7 @@ class RmthemegenTests < Test::Unit::TestCase
   end
 
   def test_random_names_ok
+      assert !@filename.nil?
   end
   
   def teardown
