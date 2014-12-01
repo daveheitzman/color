@@ -15,6 +15,5 @@
   require 'rmthemegen/rgb_contrast_methods'
   require 'rmthemegen/rmthemegen_to_css'
   require 'rmthemegen/uv_addons.rb'
-  require 'rmthemegen/plist_to_tokenlist'
 
 
