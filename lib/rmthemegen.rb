@@ -7,7 +7,8 @@
   require 'uv'
   require 'uv/utility'
 
-  require "rmthemegen/base.rb"
+  require "rmthemegen/plist"
+  require "rmthemegen/base"
   require 'rmthemegen/base/theme_textmate'
   require 'rmthemegen/base/theme_ruby_mine'
 

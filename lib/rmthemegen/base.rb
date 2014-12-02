@@ -6,11 +6,10 @@
 #*  By David Heitzman, 2011                                           *
 #*                                                                    *
 #**********************************************************************
-
-
-
 module RMThemeGen
   class Base
+   include RMThemeGen::PList
+   # extend RMThemeGen::PList2
    attr_accessor :themename
    
     def initialize
@@ -219,6 +218,8 @@ module RMThemeGen
       @document_globals[:backgroundcolor] = @backgroundcolor
       @themename = randthemename
     end #before_create
+
+
 
    end #class
 end #module
