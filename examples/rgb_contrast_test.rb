@@ -46,7 +46,7 @@ module RMThemeGen
         #puts grkcol.contrast(brkcol)
       end until true# grkcol.contrast(brkcol) > 0.20
       st1 += "<p style='padding:0;margin:0;background-color:#{grkcol.html};color:#{brkcol.html};'>aBD9 #!#$87 asf asdf werpl  09890 asd78coiuqwe rasdu 987zxcv klj;lcv "
-      st1 += "<span style='padding:0;margin:0;background-color:#ffffff;color:#000000;'>hue/lum/bri/all: #{(100*grkcol.diff_hue(brkcol)).to_i}/#{(100*grkcol.diff_lum(brkcol)).to_i}/#{(100*grkcol.diff_bri(brkcol)).to_i}/#{(100*grkcol.contrast(brkcol)).to_i}</p>"
+      st1 += "<span style='padding:0;margin:0;background-color:#ffffff;color:#000000;'>hue/lum/bri/all: #{(100*grkcol.diff_hue(brkcol)).to_i}/#{(100*grkcol.diff_luminosity(brkcol)).to_i}/#{(100*grkcol.diff_brightness(brkcol)).to_i}/#{(100*grkcol.contrast(brkcol)).to_i}</p>"
      # grkcol = Color::RGB.new(0xf1,0x11,0x9a)
      # brkcol = Color::RGB.new(0xa0,0xf4,0x2f)
      # st1 += "<p style='padding:0;margin:0;background-color:#{grkcol.html};color:#{brkcol.html};'>aBD9 #!#$87 asf asdf werpl  09890 asd78coiuqwe rasdu 987zxcv klj;lcv "

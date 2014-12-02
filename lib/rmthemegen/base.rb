@@ -11,7 +11,9 @@ module RMThemeGen
    include RMThemeGen::PList
    # extend RMThemeGen::PList2
    attr_accessor :themename
-   
+    E2000_MAX= 116
+    E2000_MIN= 0
+
     def initialize
     
     @theme_successfully_created = false
@@ -33,7 +35,7 @@ module RMThemeGen
       #with the contrast-determining functions we actually have available, 0.3 is actually quite high, near
       # the 80th percentile or so. FYI
       
-      @min_cont = 0.30	
+      @min_cont = 0.40	
       @max_cont = 1.0
       
       @themeversion = 1
@@ -142,9 +144,9 @@ module RMThemeGen
           g = b = r = rand*256   
         elsif  usecolorsets && failsafe > failsafe_mid 
           cs = @color_sets.shuffle[0] 
-          if cs.keys.include? :r then r = cr.next_gaussian( cs[:r])*256 else r = (df[:r] || rand*256)%256 end 
-          if cs.keys.include? :g then g = cr.next_gaussian( cs[:g])*256 else g = (df[:g] || rand*256)%256 end 
-          if cs.keys.include? :b then b = cr.next_gaussian( cs[:b])*256 else b = (df[:b] || rand*256)%256 end 
+          if cs.keys.include? :r then r = next_gaussian( cs[:r])*256 else r = (df[:r] || rand*256)%256 end 
+          if cs.keys.include? :g then g = next_gaussian( cs[:g])*256 else g = (df[:g] || rand*256)%256 end 
+          if cs.keys.include? :b then b = next_gaussian( cs[:b])*256 else b = (df[:b] || rand*256)%256 end 
         else
           r = (df[:r] || rand*256)%256 #mod for robustness 
           g = (df[:g] || rand*256)%256
@@ -155,7 +157,7 @@ module RMThemeGen
         best_color_yet ||= color
         
         if (df[:bg_rgb]) then 
-          this_contrast = color.contrast(df[:bg_rgb]) 
+          this_contrast = color.contrast(df[:bg_rgb],:delta_e2000) / E2000_MAX 
           last_contrast ||= this_contrast 
           best_color_yet = (this_contrast - contrast_mid).abs < (last_contrast - contrast_mid ).abs ? color : best_color_yet
           contok = (df[:min_cont]..df[:max_cont]).include?( this_contrast )
@@ -219,6 +221,17 @@ module RMThemeGen
       @themename = randthemename
     end #before_create
 
+    def next_gaussian(mean)
+      y = (-(1.0/8.0)*(Math.log(rand)))
+      y = rand >= 0.5 ? y : -y
+      # so now y should be in [-0.5 .. 0.5]
+      y= y + mean
+      y= y > 1.0 ? 1.0 : y
+      y= y < 0.0 ? 0.0 : y
+     # puts "next_gaussian: "+ y.to_s
+     
+      return y
+    end 
 
 
    end #class
