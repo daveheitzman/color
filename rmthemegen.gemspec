@@ -17,14 +17,14 @@ Gem::Specification.new do |s|
 
   s.add_dependency('rake', "10.1.1")
   s.add_dependency('xml-simple', "1.0.15")
-  s.add_dependency('color',"1.4.1")
+  s.add_dependency('color',"1.7.1")
   s.add_dependency('textpow19', '0.11.0')
   s.add_dependency('plist','3.1.0')
   s.add_dependency('ultraviolet1x', '0.14.0')
   s.add_dependency('minitest', '5.4.3')
  
   s.bindir = "bin"
-  s.executables = ['bin/generate_themes','bin/geany_fix']
+  s.executables = ['bin/generate_themes','bin/geany_fix', 'examples/test_generate_themes']
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

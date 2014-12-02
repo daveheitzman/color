@@ -12,14 +12,11 @@
   #originally it was written and tested for ruby 1.9.2
 
 
-  require File.dirname(__FILE__)+'./lib/rmthemegen/rmtg_rubymine'
-  require File.dirname(__FILE__)+'./lib/rmthemegen/rmtg_textmate'
-  #require File.dirname(__FILE__)+'./lib/rmthemegen/rmthemegen_187_textmate'
-#  require File.dirname(__FILE__)+'./lib/rmthemegen/rmtg187_new_textmate'
-  #require File.dirname(__FILE__)+'./lib/rmthemegen/plist_to_tokenlist'
+  # require  File.expand_path( '../../lib/rmthemegen',__FILE__)
+  require 'rmthemegen'
+
   puts "TEST TEST TEST"
   puts
-  puts "  Mac:  Copy xml files to ~/Library/Preferences/RubyMine/color. You must restart RubyMine on the Mac, then look for new color schemes. "
   puts
 
 =begin
