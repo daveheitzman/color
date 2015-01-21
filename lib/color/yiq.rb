@@ -31,6 +31,10 @@ class Color::YIQ
     self
   end
 
+  def to_lab
+    to_rgb.to_lab
+  end 
+  
   def to_rgb
     # returns the rgb equivalent of this color
     # http://en.wikipedia.org/wiki/YIQ

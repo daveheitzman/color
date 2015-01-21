@@ -291,12 +291,12 @@ module TestColor
       assert(Color::RGB::Yellow.to_lab.b > 0)
       
       # an rgb color converted to lab and to rgb from lab will still have the same r,g,b values 
-      # not ready for this yet. 
+      # not ready for this yet, until there is a to_rgb for LAB
       # 10.times do |t| 
       #   c1=Color::RGB.new(rand(256),rand(256),rand(256) )
       #   l1 = c1.to_lab
       #   c2 = l1.to_rgb
-      #   assert_equal(c1.r,c2.r)
+      #     assert_equal(c1.r,c2.r)
       #   assert_equal(c1.g,c2.g)
       #   assert_equal(c1.b,c2.b)
       # end 

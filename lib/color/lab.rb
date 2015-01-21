@@ -20,6 +20,41 @@ class Color::LAB
     @b = b 
   end 
 
+  def contrast(other_color, options={})
+    # options: :algorithm=><:delta_e94|:delta_e2000>
+    # options: :normalize=><true: result is in range [0..1) >
+    # e2000 avg 85.82172869559955
+    # e94 avg 82.76084360970268
+    result=if options[:algorithm]==:delta_e94 
+      # to normalize, divide result by 485 
+      Color::LAB.delta_e94( self.to_lab, other_color.to_lab )
+      if options[:normalize]
+        res/485.0
+      else      
+        res
+      end 
+    elsif options[:algorithm]==:delta_e2000
+      # to normalize, divide result by 283 
+      res=Color::LAB.delta_e2000( self.to_lab, other_color.to_lab )
+      if options[:normalize]
+        res/283.0
+      else      
+        res
+      end 
+    else
+      Color::LAB.delta_e2000( self.to_lab, other_color.to_lab )
+      if options[:normalize]
+        res/485.0
+      else      
+        res
+      end 
+    end 
+  end
+
+  def to_lab
+    self 
+  end 
+
   class << self 
     def random
       self.new(rand*100, rand*1000-500, rand*400-200)
@@ -192,5 +227,5 @@ class Color::LAB
       Math.sqrt(composite_L + composite_C + composite_H)
     end
   end 
-  
+
 end

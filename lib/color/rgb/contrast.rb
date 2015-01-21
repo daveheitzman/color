@@ -7,15 +7,19 @@ class Color::RGB
   # exception. Anything over about 0.22 should have a high likelihood of
   # being legible. Otherwise, to be safe go with something > 0.3
   def contrast(other_rgb, options={:algorithm=>nil} )
-    if options[:algorithm]==:delta_e94 
-      Color::LAB.delta_e94(self.to_lab,other_rgb.to_lab )
-    elsif options[:algorithm]==:delta_e2000 
-      Color::LAB.delta_e2000(self.to_lab,other_rgb.to_lab )
+    if options[:algorithm]
+      res=self.to_lab.contrast(other_rgb.to_lab, options)
     else 
       # The following numbers have been set with some care.
-      ((diff_brightness(other_rgb) * 0.65) +
+      # to normalize, divide result by 0.9
+      res=((diff_brightness(other_rgb) * 0.65) +
        (diff_hue(other_rgb) * 0.20) +
        (diff_luminosity(other_rgb) * 0.15))
+      if options[:normalize]
+        res/0.90
+      else      
+        res
+      end 
     end 
   end
 
